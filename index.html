@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Super 4G LTE Page</title>
+</head>
+<body>
+  <form id="superForm" action="https://www.korektel.com/en/super-4g-lte/be-ready-for-4g" method="post">
+    <input type="text" id="msisdn" name="msisdn" value="9647501483505">
+    <input type="submit" id="submitButton" class="btn btn-primary" value="Press">
+  </form>
+
+  <script>
+    document.getElementById("superForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "https://www.korektel.com/en/super-4g-lte/be-ready-for-4g", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          console.log(response);
+        }
+      };
+
+      var formData = new FormData(document.getElementById("superForm"));
+      xhr.send(formData);
+    });
+  </script>
+</body>
+</html>
